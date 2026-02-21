@@ -1,31 +1,52 @@
-# 🤖 Ochat - Application de Chat IA
+# 🤖 # Ochat (Svelte)
 
-## 📋 Description du projet
 
-Ochat est une application web de messagerie instantanée alimentée par l'intelligence artificielle Mistral AI. Développée dans le cadre de ma formation de Concepteur d'Applications Web augmenté par l'IA chez O'clock, cette application démontre ma maîtrise des technologies modernes du web et de l'intégration d'API d'intelligence artificielle.
+Application de chat IA développée avec **Svelte 5**, utilisant :
 
-L'application permet aux utilisateurs de créer plusieurs conversations, d'échanger avec une IA, et de conserver l'historique de leurs échanges de manière persistante.
+- **Mistral AI API** (LLM)
+- **PocketBase** (backend auto-hébergé)
+- Gestion complète des conversations persistées en base
+
+⚠️ Une clé API Mistral est requise pour utiliser l'application.
 
 <a href="https://drive.google.com/file/d/1HV4fXuWBjfsoTUAb56tmhmVAZlpR1MiZ/view?usp=sharing">
   <img src="./video/O_Chat.gif" width="700" alt="Aperçu O'Chat">
 </a>
 
-[Regarder la vidéo](https://vimeo.com/1160481966?share=copy&fl=sv&fe=ci)
+🎥 [Voir la vidéo complète](https://vimeo.com/1160481966?share=copy&fl=sv&fe=ci)
 
-_Note: Ce projet se concentrait uniquement sur le fichier App.svelte dans le dossier `app` >> `src`_
-
-Vous trouverez avec le projet:
-
-- Ce README décrivant l'ensemble du projet
-
-Dans le dossier `utilisation`:
+Vous trouverez avec le projet :
 
 - Une notice [NOTICE_OCHAT.md](https://github.com/charlylam/Portfolio/blob/main/projet-svelte/SA07-projet-ochat-charlylam/utilisation/NOTICE_OCHAT.md) afin de faire fonctionner le chat.
 - Des captures d'écran du projet dans [FONCTIONNEMENT.md](https://github.com/charlylam/Portfolio/blob/main/projet-svelte/SA07-projet-ochat-charlylam/utilisation/FONCTIONNEMENT.md) (rendu responsive à la fin).
 
-## 🎯 Objectifs pédagogiques
 
-Ce projet met en pratique les compétences suivantes :
+## 🚀 En 30 secondes
+
+Ochat est une application de chat IA permettant :
+
+- Authentification via clé API Mistral
+- Création / modification / suppression de conversations
+- Persistance des messages en base via PocketBase
+- Gestion du contexte conversationnel
+- Streaming des réponses IA
+- Interface responsive mobile-first
+
+---
+
+## 🛠 Stack principale
+
+- **Svelte 5 (runes)**
+- **PocketBase**
+- **Mistral AI API**
+- LocalStorage
+- Markdown
+- CSS3 responsive
+
+---
+
+<details>
+<summary><strong>📚 Objectifs pédagogiques & compétences mises en pratique</strong></summary>
 
 ### Frontend
 
@@ -56,50 +77,12 @@ Ce projet met en pratique les compétences suivantes :
 - Accessibilité (labels ARIA, navigation au clavier)
 - Code commenté et documenté
 
-## 🛠️ Technologies utilisées
+</details>
 
-| Technologie        | Usage                         |
-| ------------------ | ----------------------------- |
-| **Svelte 5**       | Framework JavaScript réactif  |
-| **PocketBase**     | Backend-as-a-Service (BaaS)   |
-| **Mistral AI API** | Modèle de langage large (LLM) |
-| **Markdown**       | Formatage des réponses IA     |
-| **CSS3**           | Styles et responsive design   |
+---
 
-## ⚙️ Fonctionnalités
-
-### Authentification
-
-- Connexion via clé API Mistral personnelle
-- Validation de la clé en temps réel
-- Stockage sécurisé dans le localStorage
-- Gestion de session utilisateur
-
-### Gestion des conversations
-
-- ✅ Création de nouvelles conversations
-- ✅ Sélection et affichage de conversations existantes
-- ✅ Modification du titre d'une conversation
-- ✅ Suppression de conversations
-- ✅ Persistance complète en base de données
-
-### Chat en temps réel
-
-- Envoi de messages avec validation
-- Affichage de l'historique complet
-- Horodatage de chaque message
-- Support du formatage Markdown pour les réponses IA
-- Gestion du contexte conversationnel
-
-### Interface utilisateur
-
-- Design moderne et épuré
-- Sidebar responsive avec menu burger sur mobile
-- Affichage différencié utilisateur/IA
-- Gestion des états de chargement et d'erreur
-- Navigation au clavier (Enter pour envoyer, Shift+Enter pour saut de ligne)
-
-## 📁 Architecture du code
+<details>
+<summary><strong>📁 Architecture du code & structure des données</strong></summary>
 
 ### Structure des données
 
@@ -113,19 +96,16 @@ Ce projet met en pratique les compétences suivantes :
 }
 ```
 
-**Collection `stockage_messages`**
-
+**Collection stockage_messages**
 ```javascript
 {
   id: string,
   content: string,
   role: "user" | "assistant",
   time: timestamp,
-  conversation_id: string (relation)
+  conversation_id: string
 }
 ```
-
-### Fonctions principales
 
 | Fonction               | Rôle                                              |
 | ---------------------- | ------------------------------------------------- |
@@ -138,69 +118,87 @@ Ce projet met en pratique les compétences suivantes :
 | `deleteConversation()` | Suppression d'une conversation et de ses messages |
 | `sendMessage()`        | Envoi d'un message et appel à l'API Mistral       |
 
-## 🚀 Installation et utilisation
+</details>
 
-### Prérequis
+---
+
+<details> <summary><strong>⚙️ Installation & utilisation</strong></summary>
+  
+**Prérequis**
 
 - Node.js (v16 ou supérieur)
+
 - PocketBase installé et configuré
+
 - Clé API Mistral AI
 
-### Étapes d'installation
+**1. Étapes d'installation**
 
-1. **Cloner le projet**
+- Cloner le projet
 
 ```bash
 git clone [URL_DU_REPO]
 cd ochat
 ```
 
-2. **Installer les dépendances**
+**2. Installer les dépendances**
 
 ```bash
 npm install
 ```
+**3. Configurer PocketBase**
 
-3. **Configurer PocketBase**
-   - Télécharger PocketBase depuis [pocketbase.io](https://pocketbase.io)
-   - Créer les collections `conversations` et `stockage_messages`
-   - Lancer PocketBase sur le port 8090
+- Télécharger PocketBase depuis https://pocketbase.io
 
-4. **Lancer l'application**
+- Créer les collections conversations et stockage_messages
+
+- Lancer PocketBase sur le port 8090
+
+**4. Lancer l'application**
 
 ```bash
 npm run dev
-```
+````
 
-5. **Se connecter**
-   - Obtenir une clé API sur [console.mistral.ai](https://console.mistral.ai)
-   - Entrer ses identifiants dans l'interface de connexion
+**5. Se connecter**
 
-## 📱 Responsive Design
+- Obtenir une clé API sur https://console.mistral.ai
+
+- Entrer ses identifiants dans l'interface
+
+</details>
+
+---
+
+<details> <summary><strong>📱 Responsive Design</strong></summary>
 
 L'application est entièrement responsive avec :
 
-- Breakpoint à 768px (tablette/mobile)
+- Breakpoint à 768px
+
 - Menu hamburger sur mobile
+
 - Adaptation des marges et espacements
+
 - Optimisation de la zone de saisie tactile
 
-## 🔐 Sécurité
+</details>
+
+---
+
+<details> <summary><strong>🔐 Sécurité</strong></summary>
 
 - Clé API stockée uniquement côté client (localStorage)
+
 - Validation des entrées utilisateur
+
 - Gestion des erreurs réseau et API
+
 - Pas d'exposition de données sensibles
 
-## 📈 Améliorations futures
+</details>
 
-- [ ] Authentification multi-utilisateurs avec gestion de profils
-- [ ] Export de conversations en PDF/Markdown
-- [ ] Support des fichiers et images
-- [ ] Mode hors ligne avec synchronisation
-- [ ] Thèmes personnalisables (light/dark mode)
-- [ ] Recherche dans l'historique des conversations
-- [ ] Création de composants
+---
 
 ## 👨‍💻 Auteur
 
