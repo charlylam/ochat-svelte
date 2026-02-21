@@ -1,4 +1,4 @@
-# 🤖 # Ochat (Svelte)
+🤖 # Ochat (Svelte)
 
 
 Application de chat IA développée avec **Svelte 5**, utilisant :
