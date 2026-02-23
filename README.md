@@ -6,6 +6,7 @@ Application de chat IA développée avec **Svelte 5**, utilisant :
 - **Mistral AI API** (LLM)
 - **PocketBase** (backend auto-hébergé)
 - Gestion complète des conversations persistées en base
+- Responsive
 
 ⚠️ Une clé API Mistral est requise pour utiliser l'application.
 
